@@ -1,0 +1,38 @@
+# Article App
+
+This is a simple article application built with React, TypeScript, and Docker. The application is containerized into four Docker containers: a database, Nginx, a frontend, and a backend.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+- Node.js
+- npm
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Zlahrouni/pano-cloud-aws.git
+```
+
+2. Navigate to the project directory
+```bash
+cd pano-cloud-aws
+```
+
+3. Build and run the Docker containers and get a coffee ☕️...
+```bash
+docker-compose up --build
+```
+
+### Applying Changes to the Frontend
+If you make changes to the frontend, you need to rebuild the frontend Docker image. Navigate to the frontend directory and run:
+```bash
+npm run build
+```
+This will create a production-ready build of your frontend application, which will be used by the Docker container. 
