@@ -90,7 +90,7 @@ Before running the following commend, you need to go to in line to of the file `
 docker container run --rm -v ${PWD}:/playbooks ansible:2.16 ansible-playbook -i inventory.ini playbook.yml --private-key /path/to/your/private/key.pem
 ```
 
-# DON'T FORGET TO SHUT DOWNTHE INSTANCE :)
+# <span style="color:red"> DON'T FORGET TO SHUT DOWN THE INSTANCE :)</span>
 ```bash
 docker container run -it --rm -v ${PWD}:/app -w /app hashicorp/terraform destroy 
 ```
