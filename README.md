@@ -3,8 +3,11 @@
 This is a simple article application built with React, TypeScript, and Docker. The application is containerized into four Docker containers: a database, Nginx, a frontend, and a backend.
 
 ## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+
+**Notice** :
+We didn't merge the _`swarm`_ and _`terraform`_ & _`ansible`_ branches into the main branch due to some issues in these branches. We decided to keep the main branch for only the code that works. However, you can still try to check the other steps and test them
 
 ### Prerequisites
 
@@ -12,6 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 - Docker Compose
 - Node.js
 - npm
+- aws account
 
 ### Installation
 
@@ -59,8 +63,6 @@ chmod +x ./launch.sh`
 
 The `launch.sh` script launches both the initialisation and the deployment.
 
-We didn't merge this branch into the main branch due to an issue with deploying the nginx service. Consequently, we decided to proceed with the subsequent steps of the practical work by deploying the app directly from the docker-compose file, bypassing the use of swarm.
-
 ### Terraform and Ansible STEP
 
 ***You can find the preview the this step in [step3-docker+terraform.mp4](assets/step3-docker+terraform.mp4)*** <br>
@@ -88,3 +90,14 @@ Before running the following commend, you need to go to in line to of the file `
 docker container run --rm -v ${PWD}:/playbooks ansible:2.16 ansible-playbook -i inventory.ini playbook.yml --private-key /path/to/your/private/key.pem
 ```
 
+# DON'T FORGET TO SHUT DOWNTHE INSTANCE :)
+```bash
+docker container run -it --rm -v ${PWD}:/app -w /app hashicorp/terraform destroy 
+```
+
+## Authors
+
+This project was created by:
+- Zlahrouni - [Official Website](https://ziadlahrouni.com)
+- Sabevi - [GitHub](https://github.com/sabevi)
+- Tamdasab - [GitHub](https://github.com/tamdasab)
