@@ -1,0 +1,78 @@
+---
+- name: Setup and configure the EC2 instance
+  hosts: web
+  become: yes
+  become_user: root
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install necessary packages
+      apt:
+        name:
+          - git
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Start and enable Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create application directory
+      file:
+        path: /home/ubuntu/app
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Copy Docker Compose file
+      copy:
+        src: ./docker-compose.yml
+        dest: /home/ubuntu/app/docker-compose.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Copy Nginx configuration for Docker
+      copy:
+        src: ./nginx
+        dest: /home/ubuntu/app/nginx
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Copy environment file
+      copy:
+        src: ./.env
+        dest: /home/ubuntu/app/.env
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Copy backend source code
+      copy:
+        src: ./backend/
+        dest: /home/ubuntu/app/backend/
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Copy frontend source code
+      copy:
+        src: ./frontend/
+        dest: /home/ubuntu/app/frontend/
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Run Docker Compose
+      shell: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/app
+      become: no

@@ -1,3 +1,7 @@
 /frontend/node_modules/
 /backend/node_modules/
-
+/.terraform
+/terraform.tfstate
+/.terraform/providers/registry.terraform.io/hashicorp/aws/5.52.0/linux_amd64/terraform-provider-aws_v5.52.0_x5
+/terraform.tfstate.backup
+/.terraform.lock.hcl
