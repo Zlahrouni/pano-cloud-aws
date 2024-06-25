@@ -36,3 +36,27 @@ If you make changes to the frontend, you need to rebuild the frontend Docker ima
 npm run build
 ```
 This will create a production-ready build of your frontend application, which will be used by the Docker container. 
+
+### DOCKER SWARM STEP
+1. Docker Swarm Network Initialisation
+2. Services Deployment
+
+We worked on this step in the branch `feat/swarm`.
+
+Before launching the following commands, open the `./launch.sh` and replace `<github-token>` with your github access token, then run:
+
+```bash
+git checkout feat/swarm
+```
+
+```bash
+chmod +x ./launch.sh`
+```
+
+```bash
+`./launch.sh`
+```
+
+The `launch.sh` script launches both the initialisation and the deployment.
+
+We didn't merge this branch into the main branch due to an issue with deploying the nginx service. Consequently, we decided to proceed with the subsequent steps of the practical work by deploying the app directly from the docker-compose file, bypassing the use of swarm.
